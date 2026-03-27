@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 public class Solution {
     public static void main(String[] args) {
@@ -17,9 +20,11 @@ public class Solution {
             frequencyMap.put(word, frequencyMap.getOrDefault(word, 0) + 1);
         }
         
-        Map<String, Integer> sortedMap = new TreeMap<>(frequencyMap);
+        List<Map.Entry<String, Integer>> list = new ArrayList<>(frequencyMap.entrySet());
+        Collections.sort(list, Comparator.comparingInt((Map.Entry<String, Integer> entry) -> -entry.getValue())
+                .thenComparing((Map.Entry<String, Integer> entry) -> entry.getKey(), Comparator.reverseOrder()));
         
-        for (Map.Entry<String, Integer> entry : sortedMap.entrySet()) {
+        for (Map.Entry<String, Integer> entry : list) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
         
