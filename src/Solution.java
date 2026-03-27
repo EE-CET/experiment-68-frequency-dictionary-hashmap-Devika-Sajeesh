@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Solution {
     public static void main(String[] args) {
@@ -16,7 +17,9 @@ public class Solution {
             frequencyMap.put(word, frequencyMap.getOrDefault(word, 0) + 1);
         }
         
-        for (Map.Entry<String, Integer> entry : frequencyMap.entrySet()) {
+        Map<String, Integer> sortedMap = new TreeMap<>(frequencyMap);
+        
+        for (Map.Entry<String, Integer> entry : sortedMap.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
         
